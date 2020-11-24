@@ -41,10 +41,10 @@ const compresImg = () => {
         //
       };
       getDest(100, 100);
-    //   getDest(150, 150);
-    //   getDest(400, 400);
-    //   getDest(1000, 1000);
-    //   getDest(1900, 1900);
+      getDest(150, 150);
+      getDest(400, 400);
+      getDest(1000, 1000);
+      getDest(1900, 1900);
     });
     return files;
   };
