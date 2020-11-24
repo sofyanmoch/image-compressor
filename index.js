@@ -1,11 +1,11 @@
 // sharp
-
 const sharp = require("sharp");
 const path = require("path");
 const fs = require("fs");
 
 const compresImg = () => {
-  let destination = "";
+  let destinationName = "";
+  let imgPathDes = "";
   let dirImg = "./src/assets/source/";
   const loopDir = () => {
     let files = [];
@@ -19,26 +19,28 @@ const compresImg = () => {
         files.push(f);
       });
       const getDest = (width, height) => {
-        files.map((e) => {
+        files.map((e, index) => {
           if (width <= 100) {
-            destination = "thumbnail";
+            destinationName = "thumbnail";
           } else if (width <= 150) {
-            destination = "small";
+            destinationName = "small";
           } else if (width <= 400) {
-            destination = "medium";
+            destinationName = "medium";
           } else if (width <= 1000) {
-            destination = "tablet";
+            destinationName = "tablet";
           } else if (width <= 1900) {
-            destination = "large";
+            destinationName = "large";
           }
+
+          imgPathDes = `${destinationName}${e}`
+
+          console.log(imgPathDes);
           sharp(`./src/assets/source/${e}`)
             .resize({ width, height })
             .toFile(
-              `./src/assets/images/${destination}/${destination}-${e}`
+              `./src/assets/images/${destinationName}/${destinationName}-${e}`
             );
         });
-
-        //
       };
       getDest(100, 100);
       getDest(150, 150);
